@@ -1,0 +1,92 @@
+/* Wrapper */
+.navbar_wrapper {
+    width: 100%;
+    background-color: #ffffff;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Container (UPDATED WIDTH) */
+.navbar_container {
+    max-width: 1626px;
+    margin: auto;
+    padding: 16px 40px; /* increased horizontal padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.navbar_container img {
+    height: 46px; /* slightly bigger for wide layout */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.navbar_container img:hover {
+    transform: scale(1.05);
+}
+
+/* Button */
+.get_started_btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px; /* slightly bigger */
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Hover */
+.get_started_btn:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+}
+
+/* Icon Animation */
+.get_started_btn svg {
+    transition: transform 0.2s ease;
+}
+
+.get_started_btn:hover svg {
+    transform: translateX(5px);
+}
+
+/* Better spacing for very large screens */
+@media (min-width: 1600px) {
+    .navbar_container {
+        padding: 18px 60px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .navbar_container {
+        padding: 14px 30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .navbar_container {
+        padding: 12px 20px;
+    }
+
+    .navbar_container img {
+        height: 38px;
+    }
+
+    .get_started_btn {
+        padding: 9px 16px;
+        font-size: 14px;
+    }
+}
