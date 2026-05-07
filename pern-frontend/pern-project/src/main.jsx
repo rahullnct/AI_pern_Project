@@ -3,16 +3,18 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
-import { ClerkProvider } from '@clerk/react'
+import { ClerkProvider } from '@clerk/clerk-react'
 
-const PUBLISHABLE_kEY= import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+const PUBLISHABLE_KEY=import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+console.log("publishable_key:",import.meta.env)
+if(!PUBLISHABLE_KEY){
+  throw new Error('missing publishable key')
+}
 
 createRoot(document.getElementById('root')).render(
-
+<ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
   <BrowserRouter>
-  <ClerkProvider publishableKey={PUBLISHABLE_kEY}>
        <App />
-  </ClerkProvider>
   </BrowserRouter>
- 
+ </ClerkProvider>
 )
