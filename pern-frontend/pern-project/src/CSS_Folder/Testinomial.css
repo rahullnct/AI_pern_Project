@@ -1,0 +1,172 @@
+/* ================= TESTIMONIAL SECTION ================= */
+
+.testinomials_container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* ================= HEADING ================= */
+
+.testinomial_heading {
+    font-size: 58px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 0px;
+    letter-spacing: -1.5px;
+}
+
+.testinomial_suheading {
+    max-width: 760px;
+    font-size: 20px;
+    line-height: 34px;
+    color: #6b7280;
+    margin-bottom: 70px;
+}
+
+/* ================= CARDS ================= */
+
+.testinomial_cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(378px, 1fr));
+    gap: 32px;
+}
+
+/* ================= SINGLE CARD ================= */
+
+.personal_card {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(14px);
+    border-radius: 28px;
+    padding: 34px;
+    text-align: left;
+    transition: all 0.35s ease;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.personal_card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.08),
+        0 10px 20px rgba(37, 99, 235, 0.08);
+}
+
+/* ================= RATINGS ================= */
+
+.rating_stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 22px;
+    color: #f59e0b;
+}
+
+/* ================= DESCRIPTION ================= */
+
+.testi_desc {
+    font-size: 18px;
+    line-height: 22px;
+    color: #4b5563;
+    margin-bottom: 32px;
+}
+
+/* ================= USER SECTION ================= */
+
+.testi_personal_data {
+    border-top: 0.5px solid #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    
+}
+
+/* User Image */
+
+.user_image {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* User Data */
+
+.testi_data {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.user_name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.user_title {
+    font-size: 15px;
+    color: #6b7280;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+
+@media (max-width: 768px) {
+
+    .testinomials_container {
+        padding: 90px 20px;
+    }
+
+    .testinomial_heading {
+        font-size: 42px;
+    }
+
+    .testinomial_suheading {
+        font-size: 17px;
+        line-height: 30px;
+        margin-bottom: 50px;
+    }
+
+    .testinomial_cards {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .personal_card {
+        padding: 28px;
+    }
+
+    .testi_desc {
+        font-size: 16px;
+        line-height: 28px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    .testinomial_heading {
+        font-size: 34px;
+    }
+
+    .testinomial_suheading {
+        font-size: 15px;
+        line-height: 28px;
+    }
+
+    .user_image {
+        width: 54px;
+        height: 54px;
+    }
+}

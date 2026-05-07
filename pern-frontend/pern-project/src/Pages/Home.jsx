@@ -3,6 +3,7 @@ import Navbar from '../Components/Navbar'
 import "../CSS_Folder/Home.css"
 import Hero from '../Components/Hero'
 import AI_tools from '../Components/AI_tools'
+import Testinomials from '../Components/Testinomials'
 function Home() {
   return (
     <div className='home_section'>
@@ -10,6 +11,7 @@ function Home() {
         <Navbar/>
         <Hero/>
         <AI_tools />
+        <Testinomials/>
       </div>  
     </div>
   )
