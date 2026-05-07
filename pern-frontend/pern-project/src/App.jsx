@@ -5,6 +5,7 @@ import Layout from './Components/Layout';
 import Home from './Pages/Home';
 import Article from './Pages/Article';
 import Dashboard from './Pages/Dashboard';
+import Blog from './Pages/Blog';
 function App() {
   return(
     <div>
@@ -12,7 +13,8 @@ function App() {
              <Route path='/' element={<Home/>}/>
              <Route path='/ai' element={<Layout/>}>
                   <Route index element={<Dashboard/>}/>
-                  <Route path='articles' element={<Article/>}/>
+                  <Route path='write-article' element={<Article/>}/>
+                  <Route path='blog-titles' element={<Blog/>}/>
              </Route>
              
        </Routes>

@@ -15,8 +15,7 @@ const Hero = () => {
             <div className='trusted_persons'>
               <img src={assets.user_group} alt='hero_user_group_img'/>trusted by 10k+ People
             </div>
-        </div>
-      
+        </div>   
   )
 }
 
