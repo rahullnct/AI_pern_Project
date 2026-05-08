@@ -1,0 +1,168 @@
+/* ================= PLAN SECTION ================= */
+
+.plan_container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 57px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* ================= HEADING ================= */
+
+.plan_heading {
+    font-size: 58px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 18px;
+    letter-spacing: -1.5px;
+}
+
+/* ================= SUBHEADING ================= */
+
+.plan_subheading {
+    max-width: 760px;
+    font-size: 20px;
+    line-height: 34px;
+    color: #6b7280;
+    margin-bottom: 27px;
+}
+
+/* ================= PRICE SECTION ================= */
+
+.price_section {
+    width: 100%;
+    position: relative;
+    border-radius: 34px;
+    overflow: hidden;
+    padding: 30px;
+    
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px);
+
+    /* Border */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    /* Shadow */
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Background Glow */
+.price_section::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(
+        circle,
+        rgba(37, 99, 235, 0.12),
+        transparent 70%
+    );
+    z-index: 0;
+}
+
+.price_section::after {
+    content: "";
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(
+        circle,
+        rgba(147, 51, 234, 0.12),
+        transparent 70%
+    );
+    z-index: 0;
+}
+
+/* Ensure Clerk stays above glow */
+.price_section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ================= CLERK CUSTOMIZATION ================= */
+
+/* Pricing cards spacing */
+.price_section .cl-rootBox {
+    width: 100%;
+}
+
+/* Smooth card style */
+.price_section .cl-card {
+    border-radius: 24px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+/* Buttons */
+.price_section button {
+    transition: all 0.3s ease !important;
+}
+
+.price_section button:hover {
+    transform: translateY(-2px);
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Laptop */
+@media (max-width: 1200px) {
+
+    .plan_heading {
+        font-size: 50px;
+    }
+
+    .plan_subheading {
+        font-size: 18px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+
+    .plan_container {
+        padding: 90px 20px;
+    }
+
+    .plan_heading {
+        font-size: 42px;
+    }
+
+    .plan_subheading {
+        font-size: 17px;
+        line-height: 30px;
+        margin-bottom: 50px;
+    }
+
+    .price_section {
+        padding: 20px;
+        border-radius: 24px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+
+    .plan_heading {
+        font-size: 34px;
+    }
+
+    .plan_subheading {
+        font-size: 15px;
+        line-height: 28px;
+    }
+
+    .price_section {
+        padding: 14px;
+    }
+}
