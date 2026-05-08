@@ -1,0 +1,225 @@
+/* ================= FOOTER ================= */
+
+.footer_section {
+    width: 100%;
+    max-width: 1626px;
+    margin: auto;
+    padding: 90px 40px 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ================= LEFT SECTION ================= */
+
+.footer_left_section {
+    flex: 1;
+    max-width: 520px;
+}
+
+.footer_left_section img {
+    height: 48px;
+    width: auto;
+    margin-bottom: 28px;
+}
+
+.footer_left_section p {
+    font-size: 17px;
+    line-height: 32px;
+    color: #6b7280;
+}
+
+/* ================= RIGHT SECTION ================= */
+
+.footer_right_section {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+/* ================= COMPANY PAGES ================= */
+
+.company_pages {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.right_first_heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.pages {
+    font-size: 17px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.pages:hover {
+    color: #2563eb;
+    transform: translateX(4px);
+}
+
+/* ================= NEWSLETTER ================= */
+
+.company_address {
+    max-width: 500px;
+    width: 100%;
+}
+
+.subscribe_heading {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 14px;
+}
+
+.subscribe_desc {
+    font-size: 16px;
+    line-height: 30px;
+    color: #6b7280;
+    margin-bottom: 24px;
+}
+
+/* ================= SUBSCRIBE SECTION ================= */
+
+.subscribe_section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* ================= INPUT ================= */
+
+.user_email {
+    flex: 1;
+    height: 58px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0 18px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.25s ease;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+}
+
+.user_email:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+/* ================= BUTTON ================= */
+
+.subscribe_btn {
+    height: 58px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+}
+
+.subscribe_btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(37, 99, 235, 0.30);
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Laptop */
+
+@media (max-width: 1200px) {
+
+    .footer_section {
+        gap: 60px;
+    }
+
+    .footer_right_section {
+        gap: 50px;
+    }
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+
+    .footer_section {
+        flex-direction: column;
+        padding: 70px 20px 40px;
+        gap: 50px;
+    }
+
+    .footer_right_section {
+        width: 100%;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .footer_left_section {
+        max-width: 100%;
+    }
+
+    .company_address {
+        max-width: 100%;
+    }
+
+    .subscribe_heading {
+        font-size: 22px;
+    }
+
+    .subscribe_section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .subscribe_btn {
+        width: 100%;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    .footer_left_section p {
+        font-size: 15px;
+        line-height: 28px;
+    }
+
+    .right_first_heading {
+        font-size: 20px;
+    }
+
+    .pages {
+        font-size: 15px;
+    }
+
+    .subscribe_heading {
+        font-size: 20px;
+    }
+
+    .subscribe_desc {
+        font-size: 15px;
+        line-height: 28px;
+    }
+
+    .user_email,
+    .subscribe_btn {
+        height: 54px;
+        font-size: 15px;
+    }
+}
