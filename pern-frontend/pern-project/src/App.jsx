@@ -13,8 +13,8 @@ function App() {
              <Route path='/' element={<Home/>}/>
              <Route path='/ai' element={<Layout/>}>
                   <Route index element={<Dashboard/>}/>
-                  <Route path='write-article' element={<Article/>}/>
-                  <Route path='blog-titles' element={<Blog/>}/>
+                  <Route path='article' element={<Article/>}/>
+                  <Route path='blog' element={<Blog/>}/>
              </Route>
              
        </Routes>
