@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useUser, useClerk } from '@clerk/clerk-react'
 import { SquarePen, House, Hash , Image, Eraser, Scissors, FileSliders} from 'lucide-react'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import "../CSS_Folder/Sidebar.css"
 function Sidebar({sidebar,setsidebar}) {
     const { user }=useUser();
     const { SignedOut, openUserProfile }=useClerk()
     const navigate=useNavigate()
+    const[isactive,setisactive]=useState(false)
     const navItems=[
-        {to: '/dashboard', icon: House, content:'Dashboard' },
-        {to: '/aricle', icon: SquarePen, content:'Write Article' },
-        {to: '/blog', icon: Hash, content:'Blog Titles' },
-        {to: '/images', icon: Image, content:'Generate Images' },
-        {to: '/rebackground', icon: Eraser, content:'Remove Backgrounds'},
-        {to: '/reobject', icon: Scissors, content:'Remove Object'},
-        {to: '/reresume', icon: FileSliders, content:'Review Resume'},
+        {to: '/ai', icon: House, content:'Dashboard' },
+        {to: '/ai/article', icon: SquarePen, content:'Write Article' },
+        {to: '/ai/blog', icon: Hash, content:'Blog Titles' },
+        {to: '/ai/generate-image', icon: Image, content:'Generate Images' },
+        {to: '/ai/remove-background', icon: Eraser, content:'Remove Backgrounds'},
+        {to: '/ai/remove-object', icon: Scissors, content:'Remove Object'},
+        {to: '/ai/review-resume', icon: FileSliders, content:'Review Resume'},
     ]
     return (
     <div className='sidebar_container'>
@@ -22,7 +24,11 @@ function Sidebar({sidebar,setsidebar}) {
     <div className='the_sidebar_contents'>
         {
             navItems.map((item)=> (
-               <span onClick={()=> navigate(item.to)}> <item.icon size={20}/> {item.content}</span>
+            <NavLink key={item.to} to={item.to} end={item.to === '/ai'} onClick={()=>setsidebar(false)} 
+            className={({ isActive }) => isActive ? "active" : ""}>
+                <item.icon size={20} className={`${isactive ? 'active_icon':''}`}/>
+                <span className='sidebar_content_name'>{item.content}</span>
+            </NavLink>
             ))
         }
     </div> 
