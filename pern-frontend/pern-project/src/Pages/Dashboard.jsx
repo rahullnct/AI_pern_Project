@@ -5,8 +5,8 @@ import {Protect} from '@clerk/clerk-react'
 import "../CSS_Folder/Dashboard.css"
 const Dashboard = () => {
   const[creations,setcreation]=useState([])
-  console.log("in dashboard:",creations)
-
+  // console.log("in dashboard:",creations)
+const[expanded,setexpaned]=useState(null)
   const getdashboard_Data= async()=>{
      setcreation(dummyCreationData)
   }
@@ -44,7 +44,7 @@ const Dashboard = () => {
         <div className='recent_creation_contents'>
          {
           creations.map((item,ind)=>(
-            <div key={ind} className='recent_creation_container'>
+            <div  onClick={()=> setexpaned(!expanded)} key={ind} className='recent_creation_container' >
               <div className='dashboard_Details'>
               <p className='creation_title'>{item.prompt}</p>
               <p className='creation_type'>{item.type} - {new Date(item.created_at).toLocaleDateString()}</p>
@@ -52,7 +52,21 @@ const Dashboard = () => {
             <div className='prompt_type'>
             <span>{item.type}</span>
             </div>
+            {
+              expanded && (
+                item.type === 'image' ? (
+                  <div className='content_image_container'>
+                    <img src={item.content} alt='prompt_image' className='content_image'/>
+                  </div>
+                ):(<div className='simple_content'>
+                 <p className='content_without_image'>{item.content}</p>
+                  </div>)
+                   
+              )
+            
+            }
             </div>
+            
           ))
          }
         </div>
