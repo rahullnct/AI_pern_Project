@@ -5,7 +5,17 @@ const Article = () => {
   const[topic,settopic]=useState({
     new_topic:""
   })
+  const content_length=[
+    {length:200, content:'Short (200-400) words'},
+    {length:400, content:'Long (400-800) words'},
+    {length:800, content:'Long (800-1200) words'},
+  ]
+
   const[generate_article,setgenerate_article]=useState(null)
+  const[selectLength,setselectLength]=useState(content_length[0])
+  // console.log(selectLength.length);
+
+
   function changehandler(event){
     settopic((prev)=>({
      ...prev,
@@ -28,12 +38,15 @@ const Article = () => {
        />
       <h4 className='full_article_length'>Article Length</h4>
       <div className='article_length'>
-       <div className='short_article'>
-        <p className='short_article_length'>Short(200-400)words</p>
-       </div>
-       <div className='long_article'>
-        <p className='long_article_length'>Long(400-800)words</p>
-       </div>
+       {
+        content_length.map((item,index)=>(
+          <p 
+          onClick={()=>setselectLength(item)} 
+          key={index} className={item.length === selectLength.length ? 'active_article_length' : ''}>
+            {item.content}
+            </p>
+        ))
+       }
       </div>
       <button className='generate_article_btn'> <SquarePen size={20}/> Generate Aricle</button>
       </div>
