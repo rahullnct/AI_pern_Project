@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { Sparkles, SquarePen,Hash } from 'lucide-react'
 const Blog = () => {
   const[topic,settopic]=useState({
-    new_topic:""
+    new_blog:""
   })
   const All_Category=[
-    {text:"general"},
+    {text:"General"},
     {text:"Technology"},
     {text:"Business"},
     {text:"Health"},
@@ -16,10 +16,11 @@ const Blog = () => {
     {text:"Food"},
   ]
 
+  // console.log("all_category:",All_Category[0].text)
 
   const[generate_article,setgenerate_article]=useState(null)
-  const[blogCategory,setblogCategory]=useState(All_Category[0])
-  // console.log(selectLength.length);
+  const[blogCategory,setblogCategory]=useState(All_Category[0].text)
+  console.log("blogCategory:",blogCategory);
 
 
   function changehandler(event){
@@ -28,34 +29,45 @@ const Blog = () => {
      [event.target.name]:event.target.value
     }) )
   }
+
+function blog_submithandler(event){
+  event.preventDefault()
+  settopic({
+    new_blog:""
+  })
+  setblogCategory(All_Category[0].text)
+}
   return (
     <div className='article_containers'>
      <div className='two_article_containers'>
-      <div className='first_article_container'>
+      <form className='first_article_container' onSubmit={blog_submithandler}>
        <h2 className='first_article_heading'><Sparkles size={20}/> AI Title Generator</h2>
        <span className='article_topic_heading'>Keyword</span>
        <input 
        className='type_topic'
        placeholder='the future of Artificial intelligence'
        type='text'
-       name='new_topic'
-       value={topic.new_topic}
+       name='new_blog'
+       value={topic.new_blog}
        onChange={changehandler}
        />
-      <h4 className='full_article_length'>Article Length</h4>
-      <div className='article_length'>
+      <h4 className='full_article_length'>Category</h4>
+      <div className='all_Categories'>
        {
         All_Category.map((item,index)=>(
           <p 
-          onClick={()=>setblogCategory(item)} 
-          key={index} className={item.length === blogCategory.length ? 'active_article_length' : ''}>
+           key={index} 
+          onClick={()=>setblogCategory(item.text)} 
+          className={`all_categories_content ${blogCategory === item.text ? 'active':''}`}
+          >
             {item.text}
             </p>
         ))
        }
       </div>
-      <button className='generate_article_btn'> <SquarePen size={20}/> Generate Title</button>
-      </div>
+      <button className='generate_article_btn'> <SquarePen size={20}/> Generate Title</button> 
+      </form>
+      
       <div className='second_article_container'>
       <h2 className='second_article_heading'><SquarePen size={20}/>Generate Article</h2>
        {
