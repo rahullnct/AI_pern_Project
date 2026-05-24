@@ -49,10 +49,10 @@ function Images() {
         <span className='image_type'>Ghibhli style</span>
        </div>
       </div>
-      <button className='generate_article_btn'> <Image size={20}/> Generate Title</button>
+      <button className='generate_article_btn'> <Image size={20}/> Generate Image</button>
       </form>
       <div className='second_article_container'>
-      <h2 className='second_article_heading'><Image size={25}/>Generate Article</h2>
+      <h2 className='second_article_heading'><Image size={25}/>Generate Image</h2>
        {
         generate_image ? (<div className='article_content'>
           generate Image
