@@ -12,10 +12,17 @@ function Images() {
       [event.target.name]:event.target.value
     }))
   }
+  
+  function submit_imagehandler(event){
+    event.preventDefault()
+    
+  }
   return (
     <div className='article_containers'>
      <div className='two_article_containers'>
-      <div className='first_article_container'>
+      <form className='first_article_container'
+      onSubmit={submit_imagehandler}
+      >
        <h2 className='first_article_heading'><Sparkles size={20}/> AI Image Generator</h2>
        <span className='article_topic_heading'>Descibe Your Image</span>
       <textarea 
@@ -43,7 +50,7 @@ function Images() {
        </div>
       </div>
       <button className='generate_article_btn'> <Image size={20}/> Generate Title</button>
-      </div>
+      </form>
       <div className='second_article_container'>
       <h2 className='second_article_heading'><Image size={25}/>Generate Article</h2>
        {
