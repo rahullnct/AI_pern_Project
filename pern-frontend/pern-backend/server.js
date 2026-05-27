@@ -1,10 +1,12 @@
 import express from "express";
+import "dotenv/config";
 import {clerkMiddleware} from '@clerk/express'
+
 const app=express();
 app.use(express.json());
-app.use(clerkMiddleware())
-const port=40000
 
+const port=40000
+app.use(clerkMiddleware())
 app.listen(port, ()=>{
     console.log(`server started at port ${port}`)
 })
