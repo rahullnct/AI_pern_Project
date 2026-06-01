@@ -10,7 +10,15 @@ import Images from './Pages/Images';
 import Background from './Pages/Background';
 import Object from './Pages/Object';
 import Resume from './Pages/Resume';
+import { useEffect } from 'react';
+import { useAuth } from '@clerk/clerk-react';
 function App() {
+    const {getToken}= useAuth()
+    useEffect(()=>{
+      getToken().then((token)=> console.log("token",token))
+    },[])
+
+
   return(
     <div>
        <Routes>
