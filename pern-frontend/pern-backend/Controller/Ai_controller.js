@@ -1,6 +1,7 @@
 import { clerkClient } from "@clerk/express";
 // import { OpenAI } from "openai/client.js";
 import OpenAI from "openai";
+import sql from "../Config/Db.js";
 
 const AI = new OpenAI({
     apiKey: process.env.GEMINI_API_KEY,
@@ -14,6 +15,13 @@ export const generateArticle=async(req,res)=>{
     const {prompt,length}=req.body;
     const plan =req.plan;
     const free_usage=req.free_usage || 0;
+
+    if(!userId){
+        return res.status(402).json({
+            success:false,
+            message:"user is not authenticated"
+        })
+    }
    
     if(plan!=='premium' && free_usage >= 10){
         return res.status(401).json({
@@ -35,8 +43,9 @@ export const generateArticle=async(req,res)=>{
 });
 console.log(response.choices[0].message)
 const my_content=response.choices[0].message.content
-//  await `INSERT INTO SaaS(userId,prompt,content,type)
-//          VALUES(${userId},${prompt},${my_content},'article')`
+ await sql
+        `INSERT INTO SaaS(user_id,prompt,content,type)
+         VALUES(${userId},${prompt},${my_content},'article')`
 
   if(plan !=='premium'){
     await clerkClient.users.updateUserMetadata(userId,{
