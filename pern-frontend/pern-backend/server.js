@@ -2,12 +2,18 @@ import express from "express";
 import "dotenv/config";
 import {clerkMiddleware, requireAuth} from '@clerk/express'
 import AI_Routes from "./Router/AI_Routes.js";
+import ConnectCloudinary from "./Config/Cloudinary.js";
+
+
 
 const app=express();
 app.use(express.json());
 
 const port=40000
 app.use(clerkMiddleware())
+await ConnectCloudinary()
+
+
 
 app.get("/",(req,res)=>{
     res.send(`<h1>homepage</h1>`)
