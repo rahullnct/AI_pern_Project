@@ -1,10 +1,11 @@
 import { clerkClient } from "@clerk/express";
-// import { OpenAI } from "openai/client.js";
 import OpenAI from "openai";
 import sql from "../Config/Db.js";
 import axios from "axios"
 import {v2 as Cloudinary} from "cloudinary"
 import { ResourceScope } from "@google/genai";
+import fs from 'fs'
+import * as pdf from "pdf-parse"
 
 
 const AI = new OpenAI({
@@ -96,6 +97,7 @@ export const generateBlog=async(req,res)=>{
             message:"limit is reached, upgrade the plan"
         })
     }
+
 
     const response = await AI.chat.completions.create({
     model: "gemini-2.5-flash",
@@ -259,6 +261,62 @@ export const removeObejct_image=async(req,res)=>{
     }
     catch(error){
         console.log("error",error)
+        res.status(400).json({
+            success:false,
+            message:error.message
+        })
+    }
+}
+export const resume_checker=async(req,res)=>{
+    try{
+     const {userId}=req.auth()
+     const resume = req.file
+     const plan=req.plan
+
+     if(plan!=='premium'){
+        return res.status(400).json({
+        success:false,
+        message:"this is not the premium plan"
+        })
+     }
+
+     if(resume.size >= 5 * 1024 * 1024){
+        return res.status(413).json({
+            success:false,
+            message:'resume size is greater than 5MB'
+        })
+     }
+     
+     const dataBuffer= fs.readFileSync(resume.path)
+     const pdfdata= await pdf(dataBuffer)
+
+    const prompt=`Review the following resume and provide constructive feedback on its strength, weekness and areas for improvments. 
+    resume Content \n\n${pdfdata.text}`
+
+
+     const response = await AI.chat.completions.create({
+    model: "gemini-2.5-flash",
+    messages: [
+        {
+            role: "user",
+            content: prompt,
+        },
+    ],
+    temperature:0.7,
+    max_tokens:100,
+});
+// console.log(response.choices[0].message)
+const my_content=response.choices[0].message.content
+ await sql 
+ `INSERT INTO SaaS(user_id,prompt,content,type)
+     VALUES(${userId},${`review the uploaded ${resume}`},${my_content},'resume-review')` 
+
+     res.status(200).json({
+        success:true,
+        message:"yahh the resume review controller is perfecly running",
+     })
+    }catch(error){
+         console.log("error",error)
         res.status(400).json({
             success:false,
             message:error.message
