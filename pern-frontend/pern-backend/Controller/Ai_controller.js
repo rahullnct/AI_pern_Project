@@ -309,7 +309,7 @@ export const resume_checker=async(req,res)=>{
 const my_content=response.choices[0].message.content
  await sql 
  `INSERT INTO SaaS(user_id,prompt,content,type)
-     VALUES(${userId},${`review the uploaded ${resume}`},${my_content},'resume-review')` 
+     VALUES(${userId},${`review the uploaded ${resume.originalname}`},${my_content},'resume-review')` 
 
      res.status(200).json({
         success:true,
