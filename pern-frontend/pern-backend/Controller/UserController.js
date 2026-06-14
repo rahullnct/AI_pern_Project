@@ -1,4 +1,4 @@
-import sql from "../Config/Db"
+import sql from "../Config/Db.js"
 
 export const getUserData=async(req,res)=>{
     try{

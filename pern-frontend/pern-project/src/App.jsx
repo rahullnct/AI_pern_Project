@@ -12,15 +12,12 @@ import Object from './Pages/Object';
 import Resume from './Pages/Resume';
 import { useEffect } from 'react';
 import { useAuth } from '@clerk/clerk-react';
+import {Toaster} from "react-hot-toast";
 function App() {
-    const {getToken}= useAuth()
-    useEffect(()=>{
-      getToken().then((token)=> console.log("token",token))
-    },[])
-
 
   return(
     <div>
+      <Toaster />
        <Routes>
              <Route path='/' element={<Home/>}/>
              <Route path='/ai' element={<Layout/>}>

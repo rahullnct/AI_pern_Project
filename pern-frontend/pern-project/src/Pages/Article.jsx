@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Sparkles, SquarePen } from 'lucide-react'
 import "../CSS_Folder/Article.css"
+import axios from 'axios'
+import { useAuth } from '@clerk/clerk-react'
+import toast from 'react-hot-toast'
 const Article = () => {
   const[topic,settopic]=useState({
     new_topic:""
@@ -11,27 +14,63 @@ const Article = () => {
     {length:800, content:'Long (800-1200) words'},
   ]
   // console.log("article_content_length",content_length[0]?.content)
-
+  
 
   const[generate_article,setgenerate_article]=useState(null)
-  const[selectLength,setselectLength]=useState(content_length[0].content)
+  const[selectLength,setselectLength]=useState(content_length[0].length)
   console.log("select_length:",selectLength);
+  const[loader,setloader]=useState(false)
+  const[content,setcontent]=useState('')
 
-
+axios.defaults.baseURL=import.meta.env.VITE_BACKEND_URL
+console.log("backend_url",import.meta.env.VITE_BACKEND_URL)
   function changehandler(event){
     settopic((prev)=>({
      ...prev,
      [event.target.name]:event.target.value
     }) )
   }
-
-  function article_submithandler(event){
+ const {getToken}=useAuth()
+ console.log("token",getToken())
+  const article_submithandler=async(event)=>{
     event.preventDefault()
-    settopic({
-     new_topic:""
+    try{
+      setloader(true)
+      const prompt=
+     `Write a complete article about: "${topic.new_topic}".
+
+Requirements:
+- Write between ${selectLength} and ${selectLength + 200} words.
+- Return only the finished article.
+- Do not explain what the user requested.
+- Do not include introductory phrases such as "It looks like you've asked me".
+- Include a suitable title.
+- Include an introduction, main content, and conclusion.
+`;
+
+      const {data}=await axios.post('/v1/ai/generate-article',{prompt,
+        length:selectLength
+      },
+    {
+      headers:{
+        Authorization: `Bearer ${await getToken()}`
+      }
     })
-    setselectLength(content_length[0].content)
-    
+    if(data.success){
+      setgenerate_article(data.content)
+    }
+    else{
+      console.log(error.message)
+      toast.error(error.message)
+    }
+    }catch(error){
+      console.log(error.message)
+      toast.error(error.message)
+    }
+    finally{
+      setloader(false)
+    }
+      
   }
   return (
     <div className='article_containers'>
@@ -54,7 +93,7 @@ const Article = () => {
         content_length.map((item,index)=>(
           <p 
           key={index} 
-          onClick={()=>setselectLength(item.content)} 
+          onClick={()=>setselectLength(item.length)} 
           className={`article_length ${selectLength === item.content ? 'active_article_length':''}`}>
             {item.content}
             </p>
@@ -67,7 +106,7 @@ const Article = () => {
       <h2 className='second_article_heading'><SquarePen size={20}/>Generate Article</h2>
        {
         generate_article ? (<div className='article_content'>
-          generate_Article
+          {generate_article}
         </div>) :
         (<div className='no_article_content'>
          <SquarePen size={30}/>
